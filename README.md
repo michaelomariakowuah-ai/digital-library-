@@ -15,8 +15,16 @@ You need three free accounts: **Supabase** (stores the records), **GitHub** (hol
    The anon key is meant to be public. The database rules stop monitors and strangers from changing anything.
 
 ## 3. Publish on Vercel
-1. On github.com create a new repository and upload `index.html` to it.
+1. On github.com create a new repository and upload `index.html` **and the `api` folder** (it holds `users.js`) to it.
 2. On vercel.com choose **Add New → Project**, import that repository, and press **Deploy**. You get an address like `your-project.vercel.app`.
+
+### Let administrators add staff inside the system
+In Supabase open **Project Settings → API** and copy the **service_role** secret key. In Vercel open your project, then **Settings → Environment Variables**, and add:
+- `SUPABASE_URL` = your Project URL
+- `SUPABASE_SERVICE_ROLE_KEY` = the service_role key
+
+Then choose **Deployments → Redeploy**. Never paste the service_role key into `index.html`; it stays hidden inside Vercel.
+After this, administrators add, promote, demote and remove people under **Admin → Staff accounts**. You only need Supabase to create the very first administrator (step 1.4 and 1.5).
 
 ## 4. Use your own domain name
 1. In Vercel open the project, then **Settings → Domains → Add**, and type your domain (for example `library.yourschool.edu.gh`).
