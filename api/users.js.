@@ -1,3 +1,5 @@
+// Vercel serverless function: lets signed-in administrators manage staff accounts.
+// Needs two environment variables in Vercel: SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY.
 module.exports = async function handler(req, res) {
   const U = process.env.SUPABASE_URL, K = process.env.SUPABASE_SERVICE_ROLE_KEY;
   if (!U || !K) return res.status(500).json({ error: 'Not set up yet: add SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in the Vercel project settings, then redeploy.' });
